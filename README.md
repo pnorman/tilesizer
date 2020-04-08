@@ -44,8 +44,6 @@ xzgrep '^10/' tiles-2020-01-01.txt.xz | tilesizer /location/of/tiles
 
 ## Contributing
 
-Test code with ``python setup.py test``.
-
 All code should be formatted according to flake8. Check this with `flake8 tilekiln tests`
 
 ## License
