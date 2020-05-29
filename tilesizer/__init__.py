@@ -1,5 +1,6 @@
 import click
 from fs import open_fs
+from fs.errors import ResourceNotFound
 import sys
 
 
@@ -14,8 +15,10 @@ def cli(suffix, location):
         (filepath, weight) = line.strip().split(' ', 2)
         if suffix is not None:
             filepath += suffix
-        weight = float(weight)
-        weights += weight
-        sizes += tilefs.getinfo(filepath, namespaces=['details']).size * weight
-
+        try:
+            weight = float(weight)
+            sizes += tilefs.getinfo(filepath, namespaces=['details']).size * weight
+            weights += weight
+        except ResourceNotFound:
+            pass
     print(sizes/weights)
